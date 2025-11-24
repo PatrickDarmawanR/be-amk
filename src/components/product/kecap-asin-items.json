@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_product_kecap_asin_items",
+  "info": {
+    "displayName": "kecapAsinItems"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

@@ -1,0 +1,12 @@
+node_modules/
+.env
+.env.*
+build/
+.cache/
+dist/
+.cloud/
+.log/
+.tmp/
+.strapi/
+*.log
+.DS_Store

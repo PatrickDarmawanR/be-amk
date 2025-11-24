@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "certificates",
+  "info": {
+    "singularName": "certificate",
+    "pluralName": "certificates",
+    "displayName": "certificate"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "kecapInggeris": {
+      "type": "component",
+      "component": "certificate.kecap-inggeris",
+      "repeatable": false
+    },
+    "kecapAsin": {
+      "type": "component",
+      "component": "certificate.kecap-asin",
+      "repeatable": false
+    }
+  }
+}

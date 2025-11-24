@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_certificate_certificate_list_kis",
+  "info": {
+    "displayName": "certificateListKI"
+  },
+  "options": {},
+  "attributes": {
+    "icon": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "certificateName": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

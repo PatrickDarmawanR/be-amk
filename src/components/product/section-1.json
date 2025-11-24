@@ -1,0 +1,60 @@
+{
+  "collectionName": "components_product_section_1s",
+  "info": {
+    "displayName": "section_1"
+  },
+  "options": {},
+  "attributes": {
+    "imageBackground": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "alt": {
+      "type": "string"
+    },
+    "text_1": {
+      "type": "string"
+    },
+    "text_2": {
+      "type": "string"
+    },
+    "text_3": {
+      "type": "string"
+    },
+    "text_4": {
+      "type": "string"
+    },
+    "icon_1": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "icon_2": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "eCommerce": {
+      "type": "component",
+      "component": "product.e-commerce",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

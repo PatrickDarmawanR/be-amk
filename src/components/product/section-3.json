@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_product_section_3s",
+  "info": {
+    "displayName": "section_3"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

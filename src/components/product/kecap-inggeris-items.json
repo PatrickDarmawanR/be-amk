@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_product_kecap_inggeris_items",
+  "info": {
+    "displayName": "kecapInggerisItems"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

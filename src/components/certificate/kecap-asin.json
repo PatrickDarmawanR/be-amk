@@ -1,0 +1,46 @@
+{
+  "collectionName": "components_certificate_kecap_asins",
+  "info": {
+    "displayName": "kecapAsin"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "imageBackground": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "logo": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "certificateListKA": {
+      "type": "component",
+      "component": "certificate.certificate-list-ka",
+      "repeatable": true
+    },
+    "info": {
+      "type": "text"
+    },
+    "certificateFileKA": {
+      "type": "component",
+      "component": "certificate.certificate-file-ka",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

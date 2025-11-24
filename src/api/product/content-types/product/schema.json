@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "products",
+  "info": {
+    "singularName": "product",
+    "pluralName": "products",
+    "displayName": "product"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "section_1": {
+      "type": "component",
+      "component": "product.section-1",
+      "repeatable": false
+    },
+    "section_2": {
+      "type": "component",
+      "component": "product.section-2",
+      "repeatable": false
+    },
+    "section_3": {
+      "type": "component",
+      "component": "product.section-3",
+      "repeatable": false
+    }
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "collectionName": "components_certificate_kecap_inggerises",
+  "info": {
+    "displayName": "kecapInggeris"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "imageBackground": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "logo": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "certificateListKI": {
+      "type": "component",
+      "component": "certificate.certificate-list-ki",
+      "repeatable": true
+    },
+    "info": {
+      "type": "text"
+    },
+    "certificateFileKI": {
+      "type": "component",
+      "component": "certificate.certificate-file-ki",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

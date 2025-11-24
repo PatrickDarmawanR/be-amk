@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_product_kecap_asins",
+  "info": {
+    "displayName": "kecapAsin"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "kecapAsinItems": {
+      "type": "component",
+      "component": "product.kecap-asin-items",
+      "repeatable": false
+    }
+  },
+  "config": {}
+}
