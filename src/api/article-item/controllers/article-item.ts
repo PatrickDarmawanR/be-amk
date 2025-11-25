@@ -24,7 +24,6 @@ export default factories.createCoreController(
             : `${baseUrl}${img.url}`
           : null;
 
-      // Ambil article by slug
       const entity = await strapi.db
         .query("api::article-item.article-item")
         .findOne({
@@ -34,7 +33,6 @@ export default factories.createCoreController(
 
       if (!entity) return ctx.notFound("Artikel tidak ditemukan");
 
-      // Ambil related articles
       const relatedArticlesRaw = await strapi.db
         .query("api::article-item.article-item")
         .findMany({

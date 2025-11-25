@@ -10,7 +10,6 @@ export default factories.createCoreController(
     async find(ctx) {
       const baseUrl = process.env.STRAPI_PUBLIC_URL;
 
-      // Ambil artikel utama (hanya 1)
       const entities = await strapi.db.query("api::article.article").findMany({
         populate: {
           article_items: { populate: { image: true } },
@@ -25,7 +24,6 @@ export default factories.createCoreController(
       const article = entities[0];
       const allItems = article.article_items || [];
 
-      // Sort by publishedDateTime DESC
       const sortedItems = allItems.sort((a: any, b: any) => {
         const dateA = new Date(a.publishedDateTime || a.createdAt).getTime();
         const dateB = new Date(b.publishedDateTime || b.createdAt).getTime();
