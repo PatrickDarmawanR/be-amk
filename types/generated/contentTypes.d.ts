@@ -556,6 +556,78 @@ export interface ApiFooterFooter extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiProductKecapAsinProductKecapAsin
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'product_kecap_asins';
+  info: {
+    displayName: 'productKecapAsin';
+    pluralName: 'product-kecap-asins';
+    singularName: 'product-kecap-asin';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    alt: Schema.Attribute.String;
+    background: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    label: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::product-kecap-asin.product-kecap-asin'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    slug: Schema.Attribute.UID;
+    title: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiProductKecapInggerisProductKecapInggeris
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'product_kecap_inggerises';
+  info: {
+    displayName: 'productKecapInggeris';
+    pluralName: 'product-kecap-inggerises';
+    singularName: 'product-kecap-inggeris';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    alt: Schema.Attribute.String;
+    background: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    label: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::product-kecap-inggeris.product-kecap-inggeris'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    slug: Schema.Attribute.UID<'title'>;
+    title: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiProductProduct extends Struct.CollectionTypeSchema {
   collectionName: 'products';
   info: {
@@ -1100,6 +1172,8 @@ declare module '@strapi/strapi' {
       'api::article.article': ApiArticleArticle;
       'api::certificate.certificate': ApiCertificateCertificate;
       'api::footer.footer': ApiFooterFooter;
+      'api::product-kecap-asin.product-kecap-asin': ApiProductKecapAsinProductKecapAsin;
+      'api::product-kecap-inggeris.product-kecap-inggeris': ApiProductKecapInggerisProductKecapInggeris;
       'api::product.product': ApiProductProduct;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
