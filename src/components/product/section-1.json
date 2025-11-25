@@ -5,19 +5,6 @@
   },
   "options": {},
   "attributes": {
-    "imageBackground": {
-      "type": "media",
-      "multiple": false,
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ]
-    },
-    "alt": {
-      "type": "string"
-    },
     "text_1": {
       "type": "string"
     },
@@ -29,26 +16,6 @@
     },
     "text_4": {
       "type": "string"
-    },
-    "icon_1": {
-      "type": "media",
-      "multiple": false,
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ]
-    },
-    "icon_2": {
-      "type": "media",
-      "multiple": false,
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ]
     },
     "eCommerce": {
       "type": "component",

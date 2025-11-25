@@ -139,6 +139,15 @@ export interface ProductKecapAsinItems extends Struct.ComponentSchema {
     displayName: 'kecapAsinItems';
   };
   attributes: {
+    alt: Schema.Attribute.String;
+    background: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    description: Schema.Attribute.Text;
+    product_kecap_asins: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::product-kecap-asin.product-kecap-asin'
+    >;
     title: Schema.Attribute.String;
   };
 }
@@ -163,6 +172,15 @@ export interface ProductKecapInggerisItems extends Struct.ComponentSchema {
     displayName: 'kecapInggerisItems';
   };
   attributes: {
+    alt: Schema.Attribute.String;
+    background: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    description: Schema.Attribute.Text;
+    product_kecap_inggerises: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::product-kecap-inggeris.product-kecap-inggeris'
+    >;
     title: Schema.Attribute.String;
   };
 }
@@ -173,13 +191,7 @@ export interface ProductSection1 extends Struct.ComponentSchema {
     displayName: 'section_1';
   };
   attributes: {
-    alt: Schema.Attribute.String;
     eCommerce: Schema.Attribute.Component<'product.e-commerce', true>;
-    icon_1: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
-    icon_2: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
-    imageBackground: Schema.Attribute.Media<
-      'images' | 'files' | 'videos' | 'audios'
-    >;
     text_1: Schema.Attribute.String;
     text_2: Schema.Attribute.String;
     text_3: Schema.Attribute.String;
