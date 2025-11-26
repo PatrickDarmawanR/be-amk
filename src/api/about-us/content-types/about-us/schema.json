@@ -1,0 +1,18 @@
+{
+  "kind": "collectionType",
+  "collectionName": "about_uses",
+  "info": {
+    "singularName": "about-us",
+    "pluralName": "about-uses",
+    "displayName": "aboutUs"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "hrefCatalog": {
+      "type": "string"
+    }
+  }
+}
