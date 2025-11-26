@@ -430,6 +430,34 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiAboutUsAboutUs extends Struct.CollectionTypeSchema {
+  collectionName: 'about_uses';
+  info: {
+    displayName: 'aboutUs';
+    pluralName: 'about-uses';
+    singularName: 'about-us';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    hrefCatalog: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::about-us.about-us'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiArticleItemArticleItem extends Struct.CollectionTypeSchema {
   collectionName: 'article_items';
   info: {
@@ -517,6 +545,35 @@ export interface ApiCertificateCertificate extends Struct.CollectionTypeSchema {
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::certificate.certificate'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiEmailNewsLetterEmailNewsLetter
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'email_news_letters';
+  info: {
+    displayName: 'EmailNewsLetter';
+    pluralName: 'email-news-letters';
+    singularName: 'email-news-letter';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    email: Schema.Attribute.Email & Schema.Attribute.Required;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::email-news-letter.email-news-letter'
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
@@ -1168,9 +1225,11 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::about-us.about-us': ApiAboutUsAboutUs;
       'api::article-item.article-item': ApiArticleItemArticleItem;
       'api::article.article': ApiArticleArticle;
       'api::certificate.certificate': ApiCertificateCertificate;
+      'api::email-news-letter.email-news-letter': ApiEmailNewsLetterEmailNewsLetter;
       'api::footer.footer': ApiFooterFooter;
       'api::product-kecap-asin.product-kecap-asin': ApiProductKecapAsinProductKecapAsin;
       'api::product-kecap-inggeris.product-kecap-inggeris': ApiProductKecapInggerisProductKecapInggeris;
