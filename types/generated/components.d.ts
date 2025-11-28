@@ -119,6 +119,38 @@ export interface ProductECommerce extends Struct.ComponentSchema {
   };
 }
 
+export interface ProductItemsKecapAsin extends Struct.ComponentSchema {
+  collectionName: 'components_product_items_kecap_asins';
+  info: {
+    displayName: 'itemsKecapAsin';
+  };
+  attributes: {
+    alt: Schema.Attribute.String;
+    background: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    label: Schema.Attribute.String;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface ProductItemsKecapInggeris extends Struct.ComponentSchema {
+  collectionName: 'components_product_items_kecap_inggerises';
+  info: {
+    displayName: 'itemsKecapInggeris';
+  };
+  attributes: {
+    alt: Schema.Attribute.String;
+    background: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    label: Schema.Attribute.String;
+    title: Schema.Attribute.String;
+  };
+}
+
 export interface ProductKecapAsin extends Struct.ComponentSchema {
   collectionName: 'components_product_kecap_asins';
   info: {
@@ -139,16 +171,10 @@ export interface ProductKecapAsinItems extends Struct.ComponentSchema {
     displayName: 'kecapAsinItems';
   };
   attributes: {
-    alt: Schema.Attribute.String;
-    background: Schema.Attribute.Media<
-      'images' | 'files' | 'videos' | 'audios'
-    >;
-    description: Schema.Attribute.Text;
-    product_kecap_asins: Schema.Attribute.Relation<
-      'oneToMany',
+    product_kecap_asin: Schema.Attribute.Relation<
+      'oneToOne',
       'api::product-kecap-asin.product-kecap-asin'
     >;
-    title: Schema.Attribute.String;
   };
 }
 
@@ -172,16 +198,10 @@ export interface ProductKecapInggerisItems extends Struct.ComponentSchema {
     displayName: 'kecapInggerisItems';
   };
   attributes: {
-    alt: Schema.Attribute.String;
-    background: Schema.Attribute.Media<
-      'images' | 'files' | 'videos' | 'audios'
-    >;
-    description: Schema.Attribute.Text;
-    product_kecap_inggerises: Schema.Attribute.Relation<
-      'oneToMany',
+    product_kecap_inggeris: Schema.Attribute.Relation<
+      'oneToOne',
       'api::product-kecap-inggeris.product-kecap-inggeris'
     >;
-    title: Schema.Attribute.String;
   };
 }
 
@@ -231,6 +251,8 @@ declare module '@strapi/strapi' {
       'certificate.kecap-inggeris': CertificateKecapInggeris;
       'footer.social-media': FooterSocialMedia;
       'product.e-commerce': ProductECommerce;
+      'product.items-kecap-asin': ProductItemsKecapAsin;
+      'product.items-kecap-inggeris': ProductItemsKecapInggeris;
       'product.kecap-asin': ProductKecapAsin;
       'product.kecap-asin-items': ProductKecapAsinItems;
       'product.kecap-inggeris': ProductKecapInggeris;

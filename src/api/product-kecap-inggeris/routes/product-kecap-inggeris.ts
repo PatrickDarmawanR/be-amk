@@ -2,6 +2,17 @@
  * product-kecap-inggeris router
  */
 
-import { factories } from '@strapi/strapi';
-
-export default factories.createCoreRouter('api::product-kecap-inggeris.product-kecap-inggeris');
+export default {
+  routes: [
+    {
+      method: "GET",
+      path: "/product-kecap-inggeris",
+      handler: "product-kecap-inggeris.find",
+    },
+    {
+      method: "GET",
+      path: "/product-kecap-inggeris/:slug",
+      handler: "product-kecap-inggeris.find",
+    },
+  ],
+};

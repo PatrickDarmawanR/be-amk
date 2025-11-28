@@ -2,6 +2,18 @@
  * product-kecap-asin router
  */
 
-import { factories } from '@strapi/strapi';
+export default {
+  routes: [
+    {
+      method: "GET",
+      path: "/product-kecap-asin",
+      handler: "product-kecap-asin.find",
+    },
+    {
+      method: "GET",
+      path: "/product-kecap-asin/:slug",
+      handler: "product-kecap-asin.find",
+    },
+  ],
+};
 
-export default factories.createCoreRouter('api::product-kecap-asin.product-kecap-asin');

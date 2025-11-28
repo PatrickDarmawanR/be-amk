@@ -5,28 +5,9 @@
   },
   "options": {},
   "attributes": {
-    "title": {
-      "type": "string"
-    },
-    "background": {
-      "type": "media",
-      "multiple": false,
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ]
-    },
-    "alt": {
-      "type": "string"
-    },
-    "description": {
-      "type": "text"
-    },
-    "product_kecap_inggerises": {
+    "product_kecap_inggeris": {
       "type": "relation",
-      "relation": "oneToMany",
+      "relation": "oneToOne",
       "target": "api::product-kecap-inggeris.product-kecap-inggeris"
     }
   },
