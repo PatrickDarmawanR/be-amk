@@ -11,17 +11,14 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "title": {
-      "type": "string"
-    },
     "slug": {
       "type": "uid",
       "targetField": "title"
     },
-    "label": {
+    "title": {
       "type": "string"
     },
-    "image": {
+    "background": {
       "type": "media",
       "multiple": false,
       "allowedTypes": [
@@ -34,15 +31,14 @@
     "alt": {
       "type": "string"
     },
-    "background": {
-      "type": "media",
-      "multiple": false,
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ]
+    "description": {
+      "type": "text",
+      "maxLength": 300
+    },
+    "itemsKecapInggeris": {
+      "type": "component",
+      "component": "product.items-kecap-inggeris",
+      "repeatable": true
     }
   }
 }

@@ -22,9 +22,8 @@ export default factories.createCoreController(
                 populate: {
                   kecapInggerisItems: {
                     populate: {
-                      background: true,
-                      product_kecap_inggerises: {
-                        populate: ["image", "background"],
+                      product_kecap_inggeris: {
+                        populate: ["background", "itemsKecapInggeris.image", "itemsKecapInggeris.background"]
                       },
                     },
                   },
@@ -34,9 +33,8 @@ export default factories.createCoreController(
                 populate: {
                   kecapAsinItems: {
                     populate: {
-                      background: true,
-                      product_kecap_asins: {
-                        populate: ["image", "background"],
+                      product_kecap_asin: {
+                        populate: ["background", "itemsKecapAsin.image", "itemsKecapAsin.background"]
                       },
                     },
                   },
@@ -78,33 +76,33 @@ export default factories.createCoreController(
           })) || [],
       };
 
-      const formatProductItems = (items, type) =>
-        !items
+      const mapSingleProduct = (prod) =>
+        !prod
           ? null
           : {
-              title: items.title,
-              description: items.description,
-              alt: items.alt,
-              background: mapImage(items.background),
+              id: prod.id,
+              title: prod.title,
+              slug: prod.slug,
+              alt: prod.alt,
+              description: prod.description,
+              background: mapImage(prod.background),
 
-              products: (items[type] || []).map((p) => ({
-                id: p.id,
-                title: p.title,
-                slug: p.slug,
-                label: p.label,
-                alt: p.alt,
-                image: mapImage(p.image),
-                background: mapImage(p.background),
-              })),
+              items:
+                (prod.itemsKecapInggeris || prod.itemsKecapAsin || []).map((i) => ({
+                  title: i.title,
+                  label: i.label,
+                  alt: i.alt,
+                  image: mapImage(i.image),
+                  background: mapImage(i.background),
+                })),
             };
 
       const section_2 = attrs.section_2 && {
         kecapInggeris: attrs.section_2.kecapInggeris
           ? {
               title: attrs.section_2.kecapInggeris.title,
-              items: formatProductItems(
-                attrs.section_2.kecapInggeris.kecapInggerisItems,
-                "product_kecap_inggerises"
+              product: mapSingleProduct(
+                attrs.section_2.kecapInggeris.kecapInggerisItems?.product_kecap_inggeris
               ),
             }
           : null,
@@ -112,9 +110,8 @@ export default factories.createCoreController(
         kecapAsin: attrs.section_2.kecapAsin
           ? {
               title: attrs.section_2.kecapAsin.title,
-              items: formatProductItems(
-                attrs.section_2.kecapAsin.kecapAsinItems,
-                "product_kecap_asins"
+              product: mapSingleProduct(
+                attrs.section_2.kecapAsin.kecapAsinItems?.product_kecap_asin
               ),
             }
           : null,
