@@ -1,5 +1,5 @@
 /**
- * ahs-approved controller (Strapi v5 + TypeScript)
+ * ahs-approved controller
  */
 
 import { factories } from "@strapi/strapi";

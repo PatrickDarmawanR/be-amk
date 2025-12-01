@@ -1,5 +1,3 @@
-// src/utils/getRelatedAhsApprovedItems.ts
-
 export const getRelatedAhsApprovedItems = async (
   strapi: any,
   excludeSlug: string,
