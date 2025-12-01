@@ -1,0 +1,20 @@
+{
+  "kind": "collectionType",
+  "collectionName": "ahs_approveds",
+  "info": {
+    "singularName": "ahs-approved",
+    "pluralName": "ahs-approveds",
+    "displayName": "ahsApproved"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "ahs_approved_items": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::ahs-approved-item.ahs-approved-item"
+    }
+  }
+}

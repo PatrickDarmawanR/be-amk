@@ -1,5 +1,15 @@
 import type { Schema, Struct } from '@strapi/strapi';
 
+export interface AhsApprovedRestaurantImage extends Struct.ComponentSchema {
+  collectionName: 'components_ahs_approved_restaurant_images';
+  info: {
+    displayName: 'restaurantImage';
+  };
+  attributes: {
+    image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+  };
+}
+
 export interface CertificateCertificateFileKa extends Struct.ComponentSchema {
   collectionName: 'components_certificate_certificate_file_kas';
   info: {
@@ -243,6 +253,7 @@ export interface ProductSection3 extends Struct.ComponentSchema {
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
+      'ahs-approved.restaurant-image': AhsApprovedRestaurantImage;
       'certificate.certificate-file-ka': CertificateCertificateFileKa;
       'certificate.certificate-file-ki': CertificateCertificateFileKi;
       'certificate.certificate-list-ka': CertificateCertificateListKa;

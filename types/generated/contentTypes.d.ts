@@ -458,6 +458,83 @@ export interface ApiAboutUsAboutUs extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiAhsApprovedItemAhsApprovedItem
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'ahs_approved_items';
+  info: {
+    displayName: 'ahsApprovedItem';
+    pluralName: 'ahs-approved-items';
+    singularName: 'ahs-approved-item';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    coverImage: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.Text &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 300;
+      }>;
+    gMaps: Schema.Attribute.String;
+    instagram: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::ahs-approved-item.ahs-approved-item'
+    > &
+      Schema.Attribute.Private;
+    location: Schema.Attribute.String;
+    phoneNumber: Schema.Attribute.BigInteger;
+    publishedAt: Schema.Attribute.DateTime;
+    restaurantImage: Schema.Attribute.Component<
+      'ahs-approved.restaurant-image',
+      true
+    >;
+    slug: Schema.Attribute.UID<'title'>;
+    subTitle: Schema.Attribute.String;
+    title: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiAhsApprovedAhsApproved extends Struct.CollectionTypeSchema {
+  collectionName: 'ahs_approveds';
+  info: {
+    displayName: 'ahsApproved';
+    pluralName: 'ahs-approveds';
+    singularName: 'ahs-approved';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    ahs_approved_items: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::ahs-approved-item.ahs-approved-item'
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::ahs-approved.ahs-approved'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiArticleItemArticleItem extends Struct.CollectionTypeSchema {
   collectionName: 'article_items';
   info: {
@@ -1238,6 +1315,8 @@ declare module '@strapi/strapi' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::about-us.about-us': ApiAboutUsAboutUs;
+      'api::ahs-approved-item.ahs-approved-item': ApiAhsApprovedItemAhsApprovedItem;
+      'api::ahs-approved.ahs-approved': ApiAhsApprovedAhsApproved;
       'api::article-item.article-item': ApiArticleItemArticleItem;
       'api::article.article': ApiArticleArticle;
       'api::certificate.certificate': ApiCertificateCertificate;
