@@ -2,6 +2,16 @@
  * sub-recipe-item router
  */
 
-import { factories } from '@strapi/strapi';
+export default {
+  routes: [
+    {
+      method: "GET",
+      path: "/sub-recipe-items/:slug",
+      handler: "sub-recipe-item.findOne",
+      config: {
+        auth: false,
+      },
+    },
+  ],
+};
 
-export default factories.createCoreRouter('api::sub-recipe-item.sub-recipe-item');
