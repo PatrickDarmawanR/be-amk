@@ -690,6 +690,60 @@ export interface ApiFooterFooter extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiMainRecipeItemMainRecipeItem
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'main_recipe_items';
+  info: {
+    displayName: 'mainRecipeItem';
+    pluralName: 'main-recipe-items';
+    singularName: 'main-recipe-item';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    country: Schema.Attribute.Enumeration<
+      [
+        'Indonesian',
+        'Chinese',
+        'Western',
+        'Korean',
+        'Japanese',
+        'Middle East',
+        'Thailand',
+      ]
+    >;
+    coverImage: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    hrefYoutube: Schema.Attribute.String;
+    ingredient: Schema.Attribute.RichText;
+    instructions: Schema.Attribute.RichText;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::main-recipe-item.main-recipe-item'
+    > &
+      Schema.Attribute.Private;
+    portion: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    sauce1: Schema.Attribute.Enumeration<['Kecap Inggeris', 'Kecap Asin']>;
+    sauce2: Schema.Attribute.Enumeration<['Kecap Inggeris', 'Kecap Asin']>;
+    slug: Schema.Attribute.UID<'title'>;
+    thumbnailImage: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    time: Schema.Attribute.Integer;
+    title: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiProductKecapAsinProductKecapAsin
   extends Struct.CollectionTypeSchema {
   collectionName: 'product_kecap_asins';
@@ -798,6 +852,89 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
     section_1: Schema.Attribute.Component<'product.section-1', false>;
     section_2: Schema.Attribute.Component<'product.section-2', false>;
     section_3: Schema.Attribute.Component<'product.section-3', false>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiRecipeRecipe extends Struct.CollectionTypeSchema {
+  collectionName: 'recipes';
+  info: {
+    displayName: 'recipe';
+    pluralName: 'recipes';
+    singularName: 'recipe';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::recipe.recipe'
+    > &
+      Schema.Attribute.Private;
+    mainRecipe: Schema.Attribute.Component<'recipe.main-recipe', true>;
+    publishedAt: Schema.Attribute.DateTime;
+    subRecipe: Schema.Attribute.Component<'recipe.sub-recipe', false>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiSubRecipeItemSubRecipeItem
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'sub_recipe_items';
+  info: {
+    displayName: 'subRecipeItem';
+    pluralName: 'sub-recipe-items';
+    singularName: 'sub-recipe-item';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    country: Schema.Attribute.Enumeration<
+      [
+        'Indonesian',
+        'Chinese',
+        'Western',
+        'Korean',
+        'Japanese',
+        'Middle East',
+        'Thailand',
+      ]
+    >;
+    coverImage: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    hrefYoutube: Schema.Attribute.String;
+    ingredient: Schema.Attribute.RichText;
+    instructions: Schema.Attribute.RichText;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::sub-recipe-item.sub-recipe-item'
+    > &
+      Schema.Attribute.Private;
+    portion: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    sauce1: Schema.Attribute.Enumeration<['Kecap Inggeris', 'Kecap Asin']>;
+    sauce2: Schema.Attribute.Enumeration<['Kecap Inggeris', 'Kecap Asin']>;
+    slug: Schema.Attribute.UID<'title'>;
+    thumbnailImage: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    time: Schema.Attribute.Integer;
+    title: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1322,9 +1459,12 @@ declare module '@strapi/strapi' {
       'api::certificate.certificate': ApiCertificateCertificate;
       'api::email-news-letter.email-news-letter': ApiEmailNewsLetterEmailNewsLetter;
       'api::footer.footer': ApiFooterFooter;
+      'api::main-recipe-item.main-recipe-item': ApiMainRecipeItemMainRecipeItem;
       'api::product-kecap-asin.product-kecap-asin': ApiProductKecapAsinProductKecapAsin;
       'api::product-kecap-inggeris.product-kecap-inggeris': ApiProductKecapInggerisProductKecapInggeris;
       'api::product.product': ApiProductProduct;
+      'api::recipe.recipe': ApiRecipeRecipe;
+      'api::sub-recipe-item.sub-recipe-item': ApiSubRecipeItemSubRecipeItem;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

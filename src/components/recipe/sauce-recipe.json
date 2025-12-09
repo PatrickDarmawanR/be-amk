@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_recipe_sauce_recipes",
+  "info": {
+    "displayName": "sauceRecipe"
+  },
+  "options": {},
+  "attributes": {
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "sauce": {
+      "type": "enumeration",
+      "enum": [
+        "Kecap Inggeris",
+        "Kecap Asin"
+      ]
+    }
+  },
+  "config": {}
+}

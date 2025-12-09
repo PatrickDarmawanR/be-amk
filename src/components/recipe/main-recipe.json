@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_recipe_main_recipes",
+  "info": {
+    "displayName": "mainRecipe"
+  },
+  "options": {},
+  "attributes": {
+    "main_recipe_items": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::main-recipe-item.main-recipe-item",
+      "populate": true
+    }
+  },
+  "config": {}
+}

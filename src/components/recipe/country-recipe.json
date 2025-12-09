@@ -1,0 +1,32 @@
+{
+  "collectionName": "components_recipe_country_recipes",
+  "info": {
+    "displayName": "countryRecipe"
+  },
+  "options": {},
+  "attributes": {
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "country": {
+      "type": "enumeration",
+      "enum": [
+        "Indonesian",
+        "Chinese",
+        "Western",
+        "Korean",
+        "Japanese",
+        "Middle East",
+        "Thailand"
+      ]
+    }
+  },
+  "config": {}
+}
