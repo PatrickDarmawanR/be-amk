@@ -1,0 +1,83 @@
+{
+  "kind": "collectionType",
+  "collectionName": "main_recipe_items",
+  "info": {
+    "singularName": "main-recipe-item",
+    "pluralName": "main-recipe-items",
+    "displayName": "mainRecipeItem"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title"
+    },
+    "coverImage": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "thumbnailImage": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "country": {
+      "type": "enumeration",
+      "enum": [
+        "Indonesian",
+        "Chinese",
+        "Western",
+        "Korean",
+        "Japanese",
+        "Middle East",
+        "Thailand"
+      ]
+    },
+    "sauce1": {
+      "type": "enumeration",
+      "enum": [
+        "Kecap Inggeris",
+        "Kecap Asin"
+      ]
+    },
+    "sauce2": {
+      "type": "enumeration",
+      "enum": [
+        "Kecap Inggeris",
+        "Kecap Asin"
+      ]
+    },
+    "portion": {
+      "type": "string"
+    },
+    "time": {
+      "type": "integer"
+    },
+    "hrefYoutube": {
+      "type": "string"
+    },
+    "ingredient": {
+      "type": "richtext"
+    },
+    "instructions": {
+      "type": "richtext"
+    }
+  }
+}

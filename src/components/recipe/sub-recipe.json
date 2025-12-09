@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_recipe_sub_recipes",
+  "info": {
+    "displayName": "subRecipe"
+  },
+  "options": {},
+  "attributes": {
+    "countryRecipe": {
+      "type": "component",
+      "component": "recipe.country-recipe",
+      "repeatable": true
+    },
+    "sauceRecipe": {
+      "type": "component",
+      "component": "recipe.sauce-recipe",
+      "repeatable": true
+    },
+    "recipeItem": {
+      "type": "component",
+      "component": "recipe.recipe-item",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

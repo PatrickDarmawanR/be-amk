@@ -250,6 +250,76 @@ export interface ProductSection3 extends Struct.ComponentSchema {
   };
 }
 
+export interface RecipeCountryRecipe extends Struct.ComponentSchema {
+  collectionName: 'components_recipe_country_recipes';
+  info: {
+    displayName: 'countryRecipe';
+  };
+  attributes: {
+    country: Schema.Attribute.Enumeration<
+      [
+        'Indonesian',
+        'Chinese',
+        'Western',
+        'Korean',
+        'Japanese',
+        'Middle East',
+        'Thailand',
+      ]
+    >;
+    image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+  };
+}
+
+export interface RecipeMainRecipe extends Struct.ComponentSchema {
+  collectionName: 'components_recipe_main_recipes';
+  info: {
+    displayName: 'mainRecipe';
+  };
+  attributes: {
+    main_recipe_items: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::main-recipe-item.main-recipe-item'
+    >;
+  };
+}
+
+export interface RecipeRecipeItem extends Struct.ComponentSchema {
+  collectionName: 'components_recipe_recipe_items';
+  info: {
+    displayName: 'recipeItem';
+  };
+  attributes: {
+    sub_recipe_items: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::sub-recipe-item.sub-recipe-item'
+    >;
+  };
+}
+
+export interface RecipeSauceRecipe extends Struct.ComponentSchema {
+  collectionName: 'components_recipe_sauce_recipes';
+  info: {
+    displayName: 'sauceRecipe';
+  };
+  attributes: {
+    image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    sauce: Schema.Attribute.Enumeration<['Kecap Inggeris', 'Kecap Asin']>;
+  };
+}
+
+export interface RecipeSubRecipe extends Struct.ComponentSchema {
+  collectionName: 'components_recipe_sub_recipes';
+  info: {
+    displayName: 'subRecipe';
+  };
+  attributes: {
+    countryRecipe: Schema.Attribute.Component<'recipe.country-recipe', true>;
+    recipeItem: Schema.Attribute.Component<'recipe.recipe-item', true>;
+    sauceRecipe: Schema.Attribute.Component<'recipe.sauce-recipe', true>;
+  };
+}
+
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
@@ -271,6 +341,11 @@ declare module '@strapi/strapi' {
       'product.section-1': ProductSection1;
       'product.section-2': ProductSection2;
       'product.section-3': ProductSection3;
+      'recipe.country-recipe': RecipeCountryRecipe;
+      'recipe.main-recipe': RecipeMainRecipe;
+      'recipe.recipe-item': RecipeRecipeItem;
+      'recipe.sauce-recipe': RecipeSauceRecipe;
+      'recipe.sub-recipe': RecipeSubRecipe;
     }
   }
 }
