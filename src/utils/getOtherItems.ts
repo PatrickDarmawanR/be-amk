@@ -1,7 +1,7 @@
 // src/utils/getOtherItems.ts
+
 import type { Core } from "@strapi/strapi";
 
-type RawProduct = any;
 type RawItem = any;
 
 export async function getOtherItems({ strapi }: { strapi: Core.Strapi }) {
@@ -25,8 +25,11 @@ export async function getOtherItems({ strapi }: { strapi: Core.Strapi }) {
     }
   )) as any[];
 
-  const asinList: RawItem[] = (asinEntries?.length ? asinEntries.flatMap((p) => p.itemsKecapAsin ?? []) : []);
-  const inggerisList: RawItem[] = (inggerisEntries?.length ? inggerisEntries.flatMap((p) => p.itemsKecapInggeris ?? []) : []);
+  const asinList: RawItem[] =
+    asinEntries?.flatMap((p) => p.itemsKecapAsin || []) ?? [];
+
+  const inggerisList: RawItem[] =
+    inggerisEntries?.flatMap((p) => p.itemsKecapInggeris || []) ?? [];
 
   const formatItem = (it: RawItem) => ({
     id: it?.id ?? null,
@@ -39,11 +42,9 @@ export async function getOtherItems({ strapi }: { strapi: Core.Strapi }) {
 
   const asinFormatted = asinList.map(formatItem);
   const inggerisFormatted = inggerisList.map(formatItem);
-  const merged = [...asinFormatted, ...inggerisFormatted];
 
   return {
     asin: asinFormatted,
     inggeris: inggerisFormatted,
-    merged,
   };
 }
