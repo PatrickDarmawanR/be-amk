@@ -117,6 +117,66 @@ export interface FooterSocialMedia extends Struct.ComponentSchema {
   };
 }
 
+export interface HomeBanner1 extends Struct.ComponentSchema {
+  collectionName: 'components_home_banner_1s';
+  info: {
+    displayName: 'banner_1';
+  };
+  attributes: {
+    alt: Schema.Attribute.String;
+    image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    title1: Schema.Attribute.String;
+    title2: Schema.Attribute.String;
+  };
+}
+
+export interface HomeBanner2 extends Struct.ComponentSchema {
+  collectionName: 'components_home_banner_2s';
+  info: {
+    displayName: 'banner_2';
+  };
+  attributes: {
+    alt: Schema.Attribute.String;
+    image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    title: Schema.Attribute.String;
+    videoItems: Schema.Attribute.Component<'home.video-items', true>;
+  };
+}
+
+export interface HomeBanner3 extends Struct.ComponentSchema {
+  collectionName: 'components_home_banner_3s';
+  info: {
+    displayName: 'banner_3';
+  };
+  attributes: {
+    alt: Schema.Attribute.String;
+    image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    label: Schema.Attribute.String;
+  };
+}
+
+export interface HomeCarousel extends Struct.ComponentSchema {
+  collectionName: 'components_home_carousels';
+  info: {
+    displayName: 'carousel';
+  };
+  attributes: {
+    alt: Schema.Attribute.String;
+    image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+  };
+}
+
+export interface HomeVideoItems extends Struct.ComponentSchema {
+  collectionName: 'components_home_video_items';
+  info: {
+    displayName: 'videoItems';
+  };
+  attributes: {
+    alt: Schema.Attribute.String;
+    item: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+  };
+}
+
 export interface ProductECommerce extends Struct.ComponentSchema {
   collectionName: 'components_product_e_commerces';
   info: {
@@ -331,6 +391,11 @@ declare module '@strapi/strapi' {
       'certificate.kecap-asin': CertificateKecapAsin;
       'certificate.kecap-inggeris': CertificateKecapInggeris;
       'footer.social-media': FooterSocialMedia;
+      'home.banner-1': HomeBanner1;
+      'home.banner-2': HomeBanner2;
+      'home.banner-3': HomeBanner3;
+      'home.carousel': HomeCarousel;
+      'home.video-items': HomeVideoItems;
       'product.e-commerce': ProductECommerce;
       'product.items-kecap-asin': ProductItemsKecapAsin;
       'product.items-kecap-inggeris': ProductItemsKecapInggeris;

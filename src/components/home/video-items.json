@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_home_video_items",
+  "info": {
+    "displayName": "videoItems"
+  },
+  "options": {},
+  "attributes": {
+    "item": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "alt": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

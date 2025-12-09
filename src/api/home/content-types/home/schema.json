@@ -1,0 +1,45 @@
+{
+  "kind": "collectionType",
+  "collectionName": "homes",
+  "info": {
+    "singularName": "home",
+    "pluralName": "homes",
+    "displayName": "home"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "landingVideo": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "carousel": {
+      "type": "component",
+      "component": "home.carousel",
+      "repeatable": true
+    },
+    "banner_1": {
+      "type": "component",
+      "component": "home.banner-1",
+      "repeatable": false
+    },
+    "banner_2": {
+      "type": "component",
+      "component": "home.banner-2",
+      "repeatable": false
+    },
+    "banner_3": {
+      "type": "component",
+      "component": "home.banner-3",
+      "repeatable": false
+    }
+  }
+}

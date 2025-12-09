@@ -690,6 +690,37 @@ export interface ApiFooterFooter extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiHomeHome extends Struct.CollectionTypeSchema {
+  collectionName: 'homes';
+  info: {
+    displayName: 'home';
+    pluralName: 'homes';
+    singularName: 'home';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    banner_1: Schema.Attribute.Component<'home.banner-1', false>;
+    banner_2: Schema.Attribute.Component<'home.banner-2', false>;
+    banner_3: Schema.Attribute.Component<'home.banner-3', false>;
+    carousel: Schema.Attribute.Component<'home.carousel', true>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    landingVideo: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::home.home'> &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiMainRecipeItemMainRecipeItem
   extends Struct.CollectionTypeSchema {
   collectionName: 'main_recipe_items';
@@ -1459,6 +1490,7 @@ declare module '@strapi/strapi' {
       'api::certificate.certificate': ApiCertificateCertificate;
       'api::email-news-letter.email-news-letter': ApiEmailNewsLetterEmailNewsLetter;
       'api::footer.footer': ApiFooterFooter;
+      'api::home.home': ApiHomeHome;
       'api::main-recipe-item.main-recipe-item': ApiMainRecipeItemMainRecipeItem;
       'api::product-kecap-asin.product-kecap-asin': ApiProductKecapAsinProductKecapAsin;
       'api::product-kecap-inggeris.product-kecap-inggeris': ApiProductKecapInggerisProductKecapInggeris;

@@ -37,16 +37,25 @@ export default factories.createCoreController(
               label: i.label ?? null,
               alt: i.alt ?? null,
               image: i?.image?.url ? `${base}${i.image.url}` : null,
-              background: i?.background?.url ? `${base}${i.background.url}` : null,
+              background: i?.background?.url
+                ? `${base}${i.background.url}`
+                : null,
             }))
           : [],
       });
 
-      const product = slug ? (data[0] ? formatProduct(data[0]) : null) : data.map(formatProduct);
+      const product = slug
+        ? data[0]
+          ? formatProduct(data[0])
+          : null
+        : data.map(formatProduct);
 
       const other = await getOtherItems({ strapi });
 
-      const otherItems = other?.merged ?? [];
+      const otherItems = {
+        asin: other.asin ?? [],
+        inggeris: other.inggeris ?? [],
+      };
 
       return ctx.send({ product, otherItems });
     },
