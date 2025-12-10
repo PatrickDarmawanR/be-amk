@@ -4,6 +4,7 @@
 
 import { factories } from "@strapi/strapi";
 import { getFeaturedArticles } from "../../../utils/getFeaturedArticles";
+import { getFooter } from "../../../utils/getFooter";
 
 export default factories.createCoreController(
   "api::ahs-approved.ahs-approved",
@@ -54,12 +55,15 @@ export default factories.createCoreController(
 
       const featuredArticles = await getFeaturedArticles(strapi);
 
+      const footer = await getFooter(strapi, baseUrl);
+
       if (search && approvedItems.length === 0) {
         return {
           data: {
             id: approved.id,
             items: [],
             message: `Tidak ada data yang cocok dengan pencarian: "${search}"`,
+            footer,
             featuredArticles,
           },
         };
@@ -69,6 +73,7 @@ export default factories.createCoreController(
         data: {
           id: approved.id,
           items: approvedItems,
+          footer,
           featuredArticles,
         },
       };

@@ -3,6 +3,7 @@
  */
 
 import { factories } from "@strapi/strapi";
+import { getFooter } from "../../../utils/getFooter";
 
 export default factories.createCoreController(
   "api::product.product",
@@ -121,11 +122,14 @@ export default factories.createCoreController(
         title: attrs.section_3.title,
       };
 
+      const footer = await getFooter(strapi, baseUrl);
+
       const result = {
         id: item.id,
         section_1,
         section_2,
         section_3,
+        footer,
       };
 
       return ctx.send({ data: result, meta });

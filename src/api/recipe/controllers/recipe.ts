@@ -3,12 +3,13 @@
  */
 
 import { factories } from "@strapi/strapi";
+import { getFooter } from "../../../utils/getFooter";
 
 export default factories.createCoreController(
   "api::recipe.recipe",
   ({ strapi }) => ({
     async find(ctx) {
-      const base = process.env.STRAPI_PUBLIC_URL;
+      const baseUrl = process.env.STRAPI_PUBLIC_URL;
 
       const filterCountry = ctx.query.country
         ? String(ctx.query.country).toLowerCase().trim()
@@ -53,7 +54,7 @@ export default factories.createCoreController(
       const mapImg = (img: any) => {
         if (!img) return null;
         if (img.url)
-          return img.url.startsWith("http") ? img.url : base + img.url;
+          return img.url.startsWith("http") ? img.url : baseUrl + img.url;
         return null;
       };
 
@@ -142,7 +143,9 @@ export default factories.createCoreController(
         sauces: filterSauces.length > 0 ? filterSauces : [],
       };
 
-      return { data, pagination, activeFilters };
+      const footer = await getFooter(strapi, baseUrl);
+
+      return { data, pagination, activeFilters, footer };
     },
   })
 );

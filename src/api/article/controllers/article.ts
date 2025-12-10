@@ -3,12 +3,15 @@
  */
 
 import { factories } from "@strapi/strapi";
+import { getFooter } from "../../../utils/getFooter";
 
 export default factories.createCoreController(
   "api::article.article",
   ({ strapi }) => ({
     async find(ctx) {
       const baseUrl = process.env.STRAPI_PUBLIC_URL;
+
+      const footer = await getFooter(strapi, baseUrl);
 
       const entities = await strapi.db.query("api::article.article").findMany({
         populate: {
@@ -47,6 +50,7 @@ export default factories.createCoreController(
           publishedDateTime: item.publishedDateTime,
           imageUrl: mapImage(item.image),
         })),
+        footer,
       };
 
       return ctx.send({ data });

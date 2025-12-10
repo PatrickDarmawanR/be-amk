@@ -4,6 +4,7 @@
 
 import { factories } from "@strapi/strapi";
 import { getFeaturedArticles } from "../../../utils/getFeaturedArticles";
+import { getFooter } from "../../../utils/getFooter";
 
 export default factories.createCoreController(
   "api::certificate.certificate",
@@ -92,11 +93,14 @@ export default factories.createCoreController(
 
       const featuredArticles = await getFeaturedArticles(strapi);
 
+      const footer = await getFooter(strapi, baseUrl);
+
       const result = {
         id: item.id,
         kecapInggeris,
         kecapAsin,
         featuredArticles,
+        footer,
       };
 
       ctx.send({ data: result, meta });
