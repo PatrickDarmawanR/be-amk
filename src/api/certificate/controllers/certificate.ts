@@ -3,6 +3,7 @@
  */
 
 import { factories } from "@strapi/strapi";
+import { getFeaturedArticles } from "../../../utils/getFeaturedArticles";
 
 export default factories.createCoreController(
   "api::certificate.certificate",
@@ -31,7 +32,7 @@ export default factories.createCoreController(
       };
 
       const { data, meta } = await super.find(ctx);
-      const baseUrl = process.env.STRAPI_PUBLIC_URL || "";
+      const baseUrl = process.env.STRAPI_PUBLIC_URL;
 
       const item = data?.[0];
       if (!item) return ctx.notFound("Data certificate tidak ditemukan");
@@ -89,10 +90,13 @@ export default factories.createCoreController(
           })) || [],
       };
 
+      const featuredArticles = await getFeaturedArticles(strapi);
+
       const result = {
         id: item.id,
         kecapInggeris,
         kecapAsin,
+        featuredArticles,
       };
 
       ctx.send({ data: result, meta });
