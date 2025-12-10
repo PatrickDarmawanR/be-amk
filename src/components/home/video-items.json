@@ -5,18 +5,15 @@
   },
   "options": {},
   "attributes": {
-    "item": {
-      "type": "media",
-      "multiple": false,
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ]
+    "mainItems": {
+      "type": "component",
+      "component": "home.main-items",
+      "repeatable": true
     },
-    "alt": {
-      "type": "string"
+    "subItems": {
+      "type": "component",
+      "component": "home.sub-items",
+      "repeatable": true
     }
   },
   "config": {}

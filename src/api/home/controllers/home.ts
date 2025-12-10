@@ -5,6 +5,7 @@
 import { factories } from "@strapi/strapi";
 import { getOtherItems } from "../../../utils/getOtherItems";
 import { getFeaturedArticles } from "../../../utils/getFeaturedArticles";
+import { getCountryRecipe } from "../../../utils/getCountryRecipes";
 
 const mapMedia = (media: any, base: string) => {
   if (!media) return null;
@@ -13,28 +14,6 @@ const mapMedia = (media: any, base: string) => {
   }
   return null;
 };
-
-async function getCountryRecipe(strapi: any, base: string) {
-  const recipeData = (await strapi.entityService.findMany(
-    "api::recipe.recipe",
-    {
-      populate: {
-        subRecipe: {
-          populate: {
-            countryRecipe: { populate: ["image"] },
-          },
-        },
-      },
-    }
-  )) as any[];
-
-  return recipeData.flatMap((rec) =>
-    (rec.subRecipe?.countryRecipe || []).map((cr: any) => ({
-      country: cr.country,
-      image: mapMedia(cr.image, base),
-    }))
-  );
-}
 
 export const getRelatedAhsApprovedItems = async (
   strapi: any,
@@ -88,7 +67,12 @@ export default factories.createCoreController(
           banner_2: {
             populate: {
               image: true,
-              videoItems: { populate: ["item"] },
+              videoItems: {
+                populate: {
+                  mainItems: { populate: ["item"] },
+                  subItems: { populate: ["item"] },
+                },
+              },
             },
           },
           banner_3: { populate: ["image"] },
@@ -106,7 +90,6 @@ export default factories.createCoreController(
         "",
         10
       );
-
       const featuredArticles = await getFeaturedArticles(strapi);
 
       const data = results.map((item: any) => ({
@@ -136,10 +119,23 @@ export default factories.createCoreController(
               title: item.banner_2.title,
               image: mapMedia(item.banner_2.image, base),
               alt: item.banner_2.alt,
-              videoItems: (item.banner_2.videoItems || []).map((vi: any) => ({
-                item: mapMedia(vi.item, base),
-                alt: vi.alt,
-              })),
+
+              videoItems: item.banner_2.videoItems
+                ? {
+                    mainItems: (item.banner_2.videoItems.mainItems || []).map(
+                      (mi: any) => ({
+                        item: mapMedia(mi.item, base),
+                        alt: mi.alt,
+                      })
+                    ),
+                    subItems: (item.banner_2.videoItems.subItems || []).map(
+                      (si: any) => ({
+                        item: mapMedia(si.item, base),
+                        alt: si.alt,
+                      })
+                    ),
+                  }
+                : null,
             }
           : null,
 
