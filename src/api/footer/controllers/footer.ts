@@ -17,7 +17,7 @@ export default factories.createCoreController(
       };
 
       const { data, meta } = await super.find(ctx);
-      const baseUrl = process.env.STRAPI_PUBLIC_URL || "";
+      const baseUrl = process.env.STRAPI_PUBLIC_URL;
 
       const item = data?.[0];
       if (!item) return ctx.notFound("Data footer tidak ditemukan");

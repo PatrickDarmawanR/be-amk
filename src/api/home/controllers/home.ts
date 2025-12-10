@@ -6,6 +6,7 @@ import { factories } from "@strapi/strapi";
 import { getOtherItems } from "../../../utils/getOtherItems";
 import { getFeaturedArticles } from "../../../utils/getFeaturedArticles";
 import { getCountryRecipe } from "../../../utils/getCountryRecipes";
+import { getFooter } from "../../../utils/getFooter";
 
 const mapMedia = (media: any, base: string) => {
   if (!media) return null;
@@ -56,7 +57,7 @@ export default factories.createCoreController(
   "api::home.home",
   ({ strapi }) => ({
     async find(ctx) {
-      const base = process.env.STRAPI_PUBLIC_URL;
+      const baseUrl = process.env.STRAPI_PUBLIC_URL;
 
       ctx.query = {
         ...ctx.query,
@@ -84,7 +85,7 @@ export default factories.createCoreController(
         .find(ctx.query);
 
       const otherItems = await getOtherItems({ strapi });
-      const countryRecipe = await getCountryRecipe(strapi, base);
+      const countryRecipe = await getCountryRecipe(strapi, baseUrl);
       const relatedAhsApprovedItems = await getRelatedAhsApprovedItems(
         strapi,
         "",
@@ -92,14 +93,16 @@ export default factories.createCoreController(
       );
       const featuredArticles = await getFeaturedArticles(strapi);
 
+      const footer = await getFooter(strapi, baseUrl);
+
       const data = results.map((item: any) => ({
         id: item.id,
         documentId: item.documentId,
 
-        landingVideo: mapMedia(item.landingVideo, base),
+        landingVideo: mapMedia(item.landingVideo, baseUrl),
 
         carousel: (item.carousel || []).map((cr: any) => ({
-          image: mapMedia(cr.image, base),
+          image: mapMedia(cr.image, baseUrl),
           alt: cr.alt,
         })),
 
@@ -109,7 +112,7 @@ export default factories.createCoreController(
           ? {
               title1: item.banner_1.title1,
               title2: item.banner_1.title2,
-              image: mapMedia(item.banner_1.image, base),
+              image: mapMedia(item.banner_1.image, baseUrl),
               alt: item.banner_1.alt,
             }
           : null,
@@ -117,20 +120,20 @@ export default factories.createCoreController(
         banner_2: item.banner_2
           ? {
               title: item.banner_2.title,
-              image: mapMedia(item.banner_2.image, base),
+              image: mapMedia(item.banner_2.image, baseUrl),
               alt: item.banner_2.alt,
 
               videoItems: item.banner_2.videoItems
                 ? {
                     mainItems: (item.banner_2.videoItems.mainItems || []).map(
                       (mi: any) => ({
-                        item: mapMedia(mi.item, base),
+                        item: mapMedia(mi.item, baseUrl),
                         alt: mi.alt,
                       })
                     ),
                     subItems: (item.banner_2.videoItems.subItems || []).map(
                       (si: any) => ({
-                        item: mapMedia(si.item, base),
+                        item: mapMedia(si.item, baseUrl),
                         alt: si.alt,
                       })
                     ),
@@ -144,7 +147,7 @@ export default factories.createCoreController(
         banner_3: item.banner_3
           ? {
               label: item.banner_3.label,
-              image: mapMedia(item.banner_3.image, base),
+              image: mapMedia(item.banner_3.image, baseUrl),
               alt: item.banner_3.alt,
             }
           : null,
@@ -152,6 +155,8 @@ export default factories.createCoreController(
         relatedAhsApprovedItems,
 
         featuredArticles,
+
+        footer,
       }));
 
       return {

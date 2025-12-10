@@ -3,6 +3,7 @@
  */
 
 import { factories } from "@strapi/strapi";
+import { getFooter } from "../../../utils/getFooter";
 
 export default factories.createCoreController(
   "api::article-item.article-item",
@@ -56,6 +57,8 @@ export default factories.createCoreController(
           imageUrl: mapImage(a.image),
         }));
 
+      const footer = await getFooter(strapi, baseUrl);
+
       const data = {
         article: {
           id: entity.id,
@@ -66,6 +69,7 @@ export default factories.createCoreController(
           imageUrl: mapImage(entity.image),
         },
         relatedArticles,
+        footer,
       };
 
       return ctx.send({ data });

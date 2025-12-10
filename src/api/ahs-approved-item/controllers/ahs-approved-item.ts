@@ -4,6 +4,7 @@
 
 import { factories } from "@strapi/strapi";
 import { getRelatedAhsApprovedItems } from "../../../utils/getRelatedAhsApprovedItems";
+import { getFooter } from "../../../utils/getFooter";
 
 
 export default factories.createCoreController(
@@ -104,10 +105,13 @@ export default factories.createCoreController(
 
       const relatedAhsApprovedItems = await getRelatedAhsApprovedItems(strapi, slug, 10);
 
+      const footer = await getFooter(strapi, baseUrl);
+
       return ctx.send({
         data: {
           item,
           relatedAhsApprovedItems,
+          footer,
         },
       });
     },

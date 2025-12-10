@@ -4,6 +4,7 @@
 
 import { factories } from "@strapi/strapi";
 import { getCountryRecipe } from "../../../utils/getCountryRecipes";
+import { getFooter } from "../../../utils/getFooter";
 
 export default factories.createCoreController(
   "api::sub-recipe-item.sub-recipe-item",
@@ -67,6 +68,8 @@ export default factories.createCoreController(
 
       const countryRecipe = await getCountryRecipe(strapi, baseUrl);
 
+      const footer = await getFooter(strapi, baseUrl);
+
       const data = {
         id: entity.id,
         title: entity.title,
@@ -81,7 +84,8 @@ export default factories.createCoreController(
         instructions: entity.instructions,
         coverImageUrl: mapImage(entity.coverImage),
         thumbnailImageUrl: mapImage(entity.thumbnailImage),
-        countryRecipe, // 🔥 ditambahkan
+        countryRecipe,
+        footer,
       };
 
       return ctx.send({ data });
