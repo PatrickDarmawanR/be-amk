@@ -1,11 +1,11 @@
 {
-  "collectionName": "components_home_banner_2s",
+  "collectionName": "components_home_sub_items",
   "info": {
-    "displayName": "banner_2"
+    "displayName": "subItems"
   },
   "options": {},
   "attributes": {
-    "image": {
+    "item": {
       "type": "media",
       "multiple": false,
       "allowedTypes": [
@@ -17,14 +17,6 @@
     },
     "alt": {
       "type": "string"
-    },
-    "title": {
-      "type": "string"
-    },
-    "videoItems": {
-      "type": "component",
-      "component": "home.video-items",
-      "repeatable": false
     }
   },
   "config": {}

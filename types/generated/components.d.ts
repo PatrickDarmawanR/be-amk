@@ -139,7 +139,7 @@ export interface HomeBanner2 extends Struct.ComponentSchema {
     alt: Schema.Attribute.String;
     image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     title: Schema.Attribute.String;
-    videoItems: Schema.Attribute.Component<'home.video-items', true>;
+    videoItems: Schema.Attribute.Component<'home.video-items', false>;
   };
 }
 
@@ -166,14 +166,36 @@ export interface HomeCarousel extends Struct.ComponentSchema {
   };
 }
 
+export interface HomeMainItems extends Struct.ComponentSchema {
+  collectionName: 'components_home_main_items';
+  info: {
+    displayName: 'mainItems';
+  };
+  attributes: {
+    alt: Schema.Attribute.String;
+    item: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+  };
+}
+
+export interface HomeSubItems extends Struct.ComponentSchema {
+  collectionName: 'components_home_sub_items';
+  info: {
+    displayName: 'subItems';
+  };
+  attributes: {
+    alt: Schema.Attribute.String;
+    item: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+  };
+}
+
 export interface HomeVideoItems extends Struct.ComponentSchema {
   collectionName: 'components_home_video_items';
   info: {
     displayName: 'videoItems';
   };
   attributes: {
-    alt: Schema.Attribute.String;
-    item: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    mainItems: Schema.Attribute.Component<'home.main-items', true>;
+    subItems: Schema.Attribute.Component<'home.sub-items', true>;
   };
 }
 
@@ -395,6 +417,8 @@ declare module '@strapi/strapi' {
       'home.banner-2': HomeBanner2;
       'home.banner-3': HomeBanner3;
       'home.carousel': HomeCarousel;
+      'home.main-items': HomeMainItems;
+      'home.sub-items': HomeSubItems;
       'home.video-items': HomeVideoItems;
       'product.e-commerce': ProductECommerce;
       'product.items-kecap-asin': ProductItemsKecapAsin;
